@@ -2,9 +2,10 @@ import express from 'express';
 import pino from 'pino-http';
 import cors from 'cors';
 import dotenv from 'dotenv';
-import router from './routers/contacts.js';
+import router from './routers/index.js';
 import { notFoundHandler } from './middlewares/notFoundHandler.js';
 import { errorHandler } from './middlewares/errorHandler.js';
+import cookieParser from 'cookie-parser';
 
 dotenv.config();
 
@@ -19,12 +20,14 @@ export const setupServer = () => {
     }),
   );
   app.use(cors());
+  app.use(cookieParser());
   app.use(
     express.json({
       type: ['application/json', 'application/vnd.api+json'],
     }),
   );
   app.use(router);
+
   app.use('*', notFoundHandler);
   app.use(errorHandler);
   app.listen(PORT, () => {
