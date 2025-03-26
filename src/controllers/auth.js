@@ -1,8 +1,10 @@
 import { ONE_DAY } from '../constants/index.js';
 import {
   logoutUser,
-  refershUsersSession,
+  refreshUsersSession,
   registerUser,
+  requestResetToken,
+  resetPwd,
 } from '../services/auth.js';
 import { loginUser } from '../services/auth.js';
 
@@ -48,8 +50,8 @@ const setupSession = (res, session) => {
   });
 };
 
-export const refershUsersSessionController = async (req, res) => {
-  const session = await refershUsersSession({
+export const refreshUsersSessionController = async (req, res) => {
+  const session = await refreshUsersSession({
     sessionId: req.cookies.sessionId,
     refreshToken: req.cookies.refreshToken,
   });
@@ -72,4 +74,22 @@ export const logoutUserController = async (req, res) => {
   res.clearCookie('refreshToken');
 
   res.status(204).send();
+};
+
+export const requestResetTokenController = async (req, res) => {
+  await requestResetToken(req.body.email);
+  res.json({
+    statis: 200,
+    message: 'Reset password email was successfully sent!',
+    data: {},
+  });
+};
+
+export const resetPwdController = async (req, res) => {
+  await resetPwd(req.body);
+  res.json({
+    status: 200,
+    message: 'Password was successfully reset!',
+    data: {},
+  });
 };
