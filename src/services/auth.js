@@ -146,4 +146,5 @@ export const resetPwd = async (payload) => {
     { _id: user._id },
     { password: encryptedPassword },
   );
+  await sessionCollection.deleteOne({ userId: user._id });
 };
