@@ -1,5 +1,5 @@
 tags:
-  - Contact
+  - Contacts
 summary: Get list of contacts
 operationId: getContacts
 description: 'Get list of contacts with this endpoint'
@@ -85,5 +85,5 @@ responses:
                 hasPreviousPage:
                   type: boolean
                   example: true
-  '404':
-    $ref: '../../components/responses/404.yaml'
+  '401':
+    $ref: '../../components/responses/401.yaml'

@@ -1,4 +1,4 @@
-description: Not found error
+description: Bad request error
 content:
   application/json:
     schema:
@@ -10,10 +10,10 @@ content:
       properties:
         status:
           type: integer
-          example: 404
+          example: 400
         message:
           type: string
-          example: Not found
+          example: Bad request
         data:
           type: object
           required:
@@ -21,4 +21,4 @@ content:
           properties:
             message:
               type: string
-              example: 'Route not found'
+              example: 'Bad request'
