@@ -15,7 +15,6 @@ requestBody:
         required:
           - name
           - phoneNumber
-          - userId
           - contactType
         properties:
           name:
